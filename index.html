@@ -2,28 +2,39 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>สแกนกรรมกลิ่นเต่า</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600;700&display=swap");
 
-      * { 
-        box-sizing: border-box; 
-        margin: 0; 
-        padding: 0; 
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
 
       body {
         min-height: 100vh;
-        background-image: 
-          radial-gradient(circle at 30% 70%, rgba(173, 216, 230, 0.35), transparent 60%),
-          radial-gradient(circle at 70% 30%, rgba(255, 182, 193, 0.4), transparent 60%);
+        background-image:
+          radial-gradient(
+            circle at 30% 70%,
+            rgba(173, 216, 230, 0.35),
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(255, 182, 193, 0.4),
+            transparent 60%
+          );
         font-family: "Mali", cursive, sans-serif;
         display: flex;
         justify-content: center;
         align-items: flex-start;
         padding: 20px;
-        color: black; 
+        color: black;
       }
 
       /* โครงสร้างหลัก (ปรับให้ Responsive แบบเนียนๆ) */
@@ -34,7 +45,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 18px !important; 
+        gap: 18px !important;
         animation: fadeIn 0.5s ease-out;
         transition: max-width 0.3s ease;
       }
@@ -60,18 +71,19 @@
         word-break: keep-all;
         overflow-wrap: break-word;
       }
-      
+
       /* กล่องแสดงรูปหลัก / วิดีโอ */
-      #img-box { 
-        width: 100%; 
+      #img-box {
+        width: 100%;
         max-width: 440px;
         border-radius: 28px;
         overflow: hidden;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
         transition: max-width 0.3s ease;
       }
-      
-      #img-box img, #img-box video {
+
+      #img-box img,
+      #img-box video {
         width: 100%;
         height: auto;
         display: block;
@@ -81,24 +93,24 @@
 
       /* ปุ่มเริ่มเลย! (ปรับตามบรีฟ: หดขยายตามข้อความ ไม่ล้น ไม่หักคำมั่ว) */
       .btn-start {
-        display: flex; 
+        display: flex;
         justify-content: center;
         align-items: center;
-        margin: 20px auto; 
-        width: 100%; 
-        max-width: 90%; 
+        margin: 20px auto;
+        width: 100%;
+        max-width: 90%;
         box-sizing: border-box;
-        white-space: normal; 
-        word-break: break-word; 
+        white-space: normal;
+        word-break: break-word;
         padding: 14px 25px;
-        line-height: 1.4; 
+        line-height: 1.4;
         background-color: #fee6e3;
         border: 2px solid #111;
-        border-radius: 12px; 
+        border-radius: 12px;
         color: #111;
         cursor: pointer;
-        font-family: "Mali", cursive, sans-serif; 
-        font-size: 20px; 
+        font-family: "Mali", cursive, sans-serif;
+        font-size: 20px;
         font-weight: 700;
         position: relative;
         text-align: center;
@@ -114,13 +126,13 @@
         border-radius: 12px;
         content: "";
         display: block;
-        height: 100%; 
+        height: 100%;
         left: 0;
         width: 100%;
         position: absolute;
-        top: 0; 
+        top: 0;
         transform: translate(6px, 6px);
-        transition: transform .2s ease-out;
+        transition: transform 0.2s ease-out;
         z-index: -1;
       }
 
@@ -139,11 +151,11 @@
         align-items: flex-start;
         gap: 12px;
         width: 100%;
-        max-width: 100%; 
+        max-width: 100%;
         font-family: "Mali", cursive, sans-serif;
-        font-size: 18px; 
+        font-size: 18px;
         font-weight: 500;
-        text-align: left; 
+        text-align: left;
         padding: 15px 18px;
         color: #5c4033;
         background: #ffffff;
@@ -151,7 +163,7 @@
         border-radius: 20px;
         cursor: pointer;
         transition: all 0.2s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
         box-sizing: border-box;
       }
 
@@ -165,26 +177,26 @@
       .btn-choice:hover {
         background: #fdfbf7;
         border-color: #cdb4db;
-        transform: translateY(-1px); 
+        transform: translateY(-1px);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.03);
       }
 
-      #action-area { 
-        width: 100%; 
+      #action-area {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 12px; 
+        gap: 12px;
         margin-top: 5px;
         align-items: center;
       }
-      
+
       /* โซนเนื้อหารายละเอียด/คำบรรยายยาว ๆ ด้านล่าง */
       #desc-text {
         font-size: 16px;
         font-weight: 400;
         color: #6d5947;
         line-height: 1.7;
-        text-align: left; 
+        text-align: left;
         width: 100%;
         max-width: 100%;
       }
@@ -228,14 +240,14 @@
         font-size: 17px !important;
         line-height: 1.6 !important;
         color: #333333;
-        margin-bottom: 18px; 
+        margin-bottom: 18px;
       }
 
       .landing-paragraph strong {
         font-weight: 700;
         color: #000000;
       }
-      
+
       .footer-credit {
         font-size: 16px;
         color: #b0a394;
@@ -244,34 +256,46 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(6px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @keyframes smoothPopup {
-        0% { opacity: 0; transform: scale(0.98) translateY(6px); }
-        100% { opacity: 1; transform: scale(1) translateY(0); }
+        0% {
+          opacity: 0;
+          transform: scale(0.98) translateY(6px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
       }
 
       /* =======================================================
          บล็อกกู้ชีพหน้าจอ PC
          ======================================================= */
       @media (min-width: 1024px) {
-        body { 
-          padding: 50px 20px; 
+        body {
+          padding: 50px 20px;
         }
-        
-        .quiz-landing-container { 
+
+        .quiz-landing-container {
           max-width: 800px;
-          gap: 24px !important; 
+          gap: 24px !important;
         }
 
         #img-box {
-          max-width: 720px; 
+          max-width: 720px;
         }
-        
-        #main-title { 
-          font-size: 34px; 
+
+        #main-title {
+          font-size: 34px;
           margin: 10px 0;
         }
 
@@ -290,26 +314,34 @@
           border-radius: 24px;
         }
 
-        .btn-start { 
-          font-size: 26px; 
-          padding: 14px 55px; 
+        .btn-start {
+          font-size: 26px;
+          padding: 14px 55px;
         }
       }
     </style>
   </head>
   <body>
-
     <div class="quiz-landing-container">
       <h1 id="main-title"></h1>
       <p id="badge-title"></p>
       <div id="img-box"></div>
       <div id="desc-text"></div>
       <div id="action-area"></div>
-      
+
       <div class="footer-credit">
-        สร้างสรรค์โดย FreshD <br>
-        <span style="font-size: 14px; font-weight: normal; opacity: 0.8; display: inline-block; margin-top: 3px;">
-          เมื่อเจ้าของแบรนด์ผันตัวมาเป็นเดฟมือใหม่สัสๆ ลองการตลาดมาทุกท่าละ หวังว่าคุณน้าๆ จะชอบนะค้าบ 🤙😎
+        สร้างสรรค์โดย FreshD <br />
+        <span
+          style="
+            font-size: 14px;
+            font-weight: normal;
+            opacity: 0.8;
+            display: inline-block;
+            margin-top: 3px;
+          "
+        >
+          เมื่อเจ้าของแบรนด์ผันตัวมาเป็นเดฟมือใหม่สัสๆ ลองการตลาดมาทุกท่าละ
+          หวังว่าคุณน้าๆ จะชอบนะค้าบ 🤙😎
         </span>
       </div>
     </div>
@@ -320,19 +352,19 @@
          ════════════════════════════════════════ */
 
       function clearCard() {
-        document.getElementById("main-title").textContent  = "";
+        document.getElementById("main-title").textContent = "";
         document.getElementById("badge-title").textContent = "";
-        document.getElementById("img-box").innerHTML       = "";
-        document.getElementById("desc-text").innerHTML     = "";
-        document.getElementById("action-area").innerHTML   = ""; 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById("img-box").innerHTML = "";
+        document.getElementById("desc-text").innerHTML = "";
+        document.getElementById("action-area").innerHTML = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       function createStartButton(label, onClick, customStyle) {
         const area = document.getElementById("action-area");
-        const btn  = document.createElement("button");
-        btn.className   = "btn-start";
-        btn.innerHTML   = label;
+        const btn = document.createElement("button");
+        btn.className = "btn-start";
+        btn.innerHTML = label;
         if (customStyle) {
           btn.style.cssText = customStyle;
         }
@@ -342,24 +374,36 @@
 
       function cleanThaiTypography(text) {
         let cleanText = text;
-        const safeWords = ["กลิ่นสาปอสูร", "อสูร", "เหมือนกันจ้า", "พวกเรา", "หลบหนี", "วิงเวียน"];
-        safeWords.forEach(word => {
-          const regex = new RegExp(word, 'g');
-          cleanText = cleanText.replace(regex, `<span style="white-space: nowrap;">${word}</span>`);
+        const safeWords = [
+          "กลิ่นสาปอสูร",
+          "อสูร",
+          "เหมือนกันจ้า",
+          "พวกเรา",
+          "หลบหนี",
+          "วิงเวียน",
+        ];
+        safeWords.forEach((word) => {
+          const regex = new RegExp(word, "g");
+          cleanText = cleanText.replace(
+            regex,
+            `<span style="white-space: nowrap;">${word}</span>`,
+          );
         });
         return cleanText;
       }
 
       function createChoices(choicesArray) {
         const targetArea = document.getElementById("action-area");
-        targetArea.innerHTML = ""; 
+        targetArea.innerHTML = "";
 
-        choicesArray.forEach(choice => {
+        choicesArray.forEach((choice) => {
           const btn = document.createElement("button");
           btn.className = "btn-choice";
           btn.onclick = choice.go;
 
-          const match = choice.label.match(/^([\u{1F300}-\u{1F64F}\u{1F680}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}].*?)\s(.*)$/u);
+          const match = choice.label.match(
+            /^([\u{1F300}-\u{1F64F}\u{1F680}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}].*?)\s(.*)$/u,
+          );
 
           if (match) {
             const emoji = match[1];
@@ -376,61 +420,82 @@
 
       function createImg(src) {
         const img = document.createElement("img");
-        img.src   = src;
+        img.src = src;
         document.getElementById("img-box").appendChild(img);
       }
 
       function createVideo(src) {
-        const vid         = document.createElement("video");
-        vid.src           = src;
-        vid.autoplay      = true;
-        vid.loop          = true;
-        vid.muted         = true;
-        vid.playsInline   = true;
+        const vid = document.createElement("video");
+        vid.src = src;
+        vid.autoplay = true;
+        vid.loop = true;
+        vid.muted = true;
+        vid.playsInline = true;
         document.getElementById("img-box").appendChild(vid);
       }
 
       const LINKS = [
-        { label: "🛒 สั่งซื้อผ่าน Shopee",  url: "https://shopee.co.th/freshd_deodorant" },
-        { label: "🎵 ดู POV ฮ่าๆได้บน TikTok",  url: " https://vt.tiktok.com/ZS96r1cUy2JKp-cI1v6/" },
+        {
+          label: "🛒 สั่งซื้อผ่าน Shopee",
+          url: " https://s.shopee.co.th/qhR1lHjO3?share_channel_code=6",
+        },
+        {
+          label: "🎵 ดู POV ฮ่าๆได้บน TikTok",
+          url: "https://www.tiktok.com/@freshd_official_store?_r=1&_t=ZS-97X8apEjIdr",
+        },
         { label: "💬 สอบถามทาง Line OA", url: "https://lin.ee/pwj0Kb6" },
       ];
 
       function createResultButtons() {
         const targetArea = document.getElementById("action-area");
-        targetArea.innerHTML = ""; 
+        targetArea.innerHTML = "";
 
-        LINKS.forEach(function(item) {
+        LINKS.forEach(function (item) {
           const btn = document.createElement("button");
-          btn.className     = "btn-choice";
-          btn.textContent   = item.label;
+          btn.className = "btn-choice";
+          btn.textContent = item.label;
           btn.style.background = "#fffbfa";
           btn.style.borderColor = "#f3d5cd";
-          btn.addEventListener("click", function() { window.open(item.url, "_blank"); });
+          btn.addEventListener("click", function () {
+            window.open(item.url, "_blank");
+          });
           targetArea.appendChild(btn);
         });
 
-        createStartButton("📤 แชร์ผลลัพธ์", function() {
-          if (navigator.share) {
-            navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: "มาลองเช็คกันเถอะ!", url: window.location.href });
-          } else {
-            navigator.clipboard.writeText(window.location.href);
-            alert("คัดลอกลิงก์เรียบร้อยแล้วจ้า!");
-          }
-        }, "font-size:18px; padding:10px 30px; background:#e8def8; border-color:#d0bcff; margin-top: 10px;");
+        createStartButton(
+          "📤 แชร์ผลลัพธ์",
+          function () {
+            if (navigator.share) {
+              navigator.share({
+                title: "สแกนกรรมกลิ่นเต่า",
+                text: "มาลองเช็คกันเถอะ!",
+                url: window.location.href,
+              });
+            } else {
+              navigator.clipboard.writeText(window.location.href);
+              alert("คัดลอกลิงก์เรียบร้อยแล้วจ้า!");
+            }
+          },
+          "font-size:18px; padding:10px 30px; background:#e8def8; border-color:#d0bcff; margin-top: 10px;",
+        );
 
-        createStartButton("🔄 กลับหน้าแรก", function() {
-          location.reload();
-        }, "font-size:18px; padding:10px 30px; background:#f0ece1; border-color:#dcd6c5; color:#706253;");
+        createStartButton(
+          "🔄 กลับหน้าแรก",
+          function () {
+            location.reload();
+          },
+          "font-size:18px; padding:10px 30px; background:#f0ece1; border-color:#dcd6c5; color:#706253;",
+        );
       }
 
       /* ════════════════════════════════════════
           🚀 GAME ENGINE & SCENES
          ════════════════════════════════════════ */
-      
+
       function initGame() {
         clearCard();
-        document.getElementById("main-title").textContent  = "คุณเป็นคนประเภทไหนกันแน่นะ?";
+        document.getElementById("main-title").textContent =
+          "คุณเป็นคนประเภทไหนกันแน่นะ?";
         createVideo("video/cover.mp4");
 
         createStartButton("ลุยดิค้าบ...คุณน้า<br>🫵😎", showPage2);
@@ -457,9 +522,10 @@
 
       function showPage2() {
         clearCard();
-        document.getElementById("main-title").textContent = "⏰ ตื่นสายเข้าให้แล้ว!";
+        document.getElementById("main-title").textContent =
+          "⏰ ตื่นสายเข้าให้แล้ว!";
         createImg("image_007/ตื่นสาย_png.png");
-        
+
         document.getElementById("desc-text").innerHTML = `
           <div class="single-perfect-box">
             <div class="text-line">
@@ -477,9 +543,10 @@
 
       function showPage3() {
         clearCard();
-        document.getElementById("main-title").textContent = "ขบวนรถไฟสายระทึกขวัญ";
+        document.getElementById("main-title").textContent =
+          "ขบวนรถไฟสายระทึกขวัญ";
         createImg("image_007/bts.jpg");
-        
+
         document.getElementById("desc-text").innerHTML = `
           <div class="single-perfect-box">
             <div class="text-line">
@@ -494,21 +561,40 @@
             </div>
           </div>
         `;
-        
+
         createStartButton("วิกฤตนี้ คุณน้าจะแก้เกมยังไง? 😮‍💨", showPage4);
       }
 
       function showPage4() {
         clearCard();
-        document.getElementById("main-title").textContent = "🚨 สถานการณ์บีบคั้น คนเริ่มหันมามองคุณน้าเป็นตาเดียวแล้ว เอาไงดีครับน้า!";
-        document.getElementById("badge-title").textContent = "เลือกข้อที่ตรงใจคุณน้ามากที่สุดและเป็นตัวเองสุดๆ";
-        
+        document.getElementById("main-title").textContent =
+          "🚨 สถานการณ์บีบคั้น คนเริ่มหันมามองคุณน้าเป็นตาเดียวแล้ว เอาไงดีครับน้า!";
+        document.getElementById("badge-title").textContent =
+          "เลือกข้อที่ตรงใจคุณน้ามากที่สุดและเป็นตัวเองสุดๆ";
+
         createChoices([
-          { label: '😈 สวนไปดังๆ "กลิ่นเต่าพี่เหมือนกลิ่นสาปอสูรหมือนกันจ้า!" ',        go: showPage_2A },
-          { label: '🤝 หันไปคุยกับคนรอบข้าง "เห็นไหมแอร์เสียจนกลิ่นพวกเราตีกันหมดแล้ว มาหุบแขนเถอะพี่"',    go: showPage_2B },
-          { label: "🏃 รีบหุบรักแร้ ก้มหน้าเดินแทรกตัวหนีไปโบกี้อื่นทันที",              go: showPage_2C },
-          { label: "🎭 แกล้งทำเป็นหน้ามืดวิงเวียน ทิ้งดิ่งล้มพับสลบไปเลย",                      go: showPage_2D },
-          { label: '💰 ตะโกนบอกคนทั้งตู้ "ใช่ครับกลิ่นเต่าผมเอง! ใครไม่อยากเหม็นโอนตังมา 10 บาท”',        go: showPage_2E },
+          {
+            label: '😈 สวนไปดังๆ "กลิ่นเต่าพี่เหมือนกลิ่นสาปอสูรหมือนกันจ้า!" ',
+            go: showPage_2A,
+          },
+          {
+            label:
+              '🤝 หันไปคุยกับคนรอบข้าง "เห็นไหมแอร์เสียจนกลิ่นพวกเราตีกันหมดแล้ว มาหุบแขนเถอะพี่"',
+            go: showPage_2B,
+          },
+          {
+            label: "🏃 รีบหุบรักแร้ ก้มหน้าเดินแทรกตัวหนีไปโบกี้อื่นทันที",
+            go: showPage_2C,
+          },
+          {
+            label: "🎭 แกล้งทำเป็นหน้ามืดวิงเวียน ทิ้งดิ่งล้มพับสลบไปเลย",
+            go: showPage_2D,
+          },
+          {
+            label:
+              '💰 ตะโกนบอกคนทั้งตู้ "ใช่ครับกลิ่นเต่าผมเอง! ใครไม่อยากเหม็นโอนตังมา 10 บาท”',
+            go: showPage_2E,
+          },
         ]);
       }
 
@@ -516,7 +602,7 @@
         clearCard();
         document.getElementById("main-title").textContent = "🔥สายบวกประชดกลับ";
         createImg("image_007/2A_2000x2000px.png");
-        
+
         document.getElementById("desc-text").innerHTML = `
           <div class="single-perfect-box">
             <div class="text-line">
@@ -525,28 +611,48 @@
             </div>
           </div>
         `;
-        
+
         createStartButton("ไปต่อดิครับน้า..>อย่าไปหยอง!🫵😎", showQuiz_2A);
       }
 
       function showQuiz_2A() {
         clearCard();
-        document.getElementById('main-title').textContent = '🥊เปิดศึกดวลวงแขน! คนรอบข้างจ้องตาแป๋ว สถานการณ์นี้คุณน้าจะทำอย่างไรดี?';
-        document.getElementById('badge-title').textContent = 'เลือกตอบโต้พี่ชายคนนั้นด่วนเลยครับ! ';
+        document.getElementById("main-title").textContent =
+          "🥊เปิดศึกดวลวงแขน! คนรอบข้างจ้องตาแป๋ว สถานการณ์นี้คุณน้าจะทำอย่างไรดี?";
+        document.getElementById("badge-title").textContent =
+          "เลือกตอบโต้พี่ชายคนนั้นด่วนเลยครับ! ";
         createChoices([
-          { label: '⚔️ ยอมรับคำท้า ยกแขนสุดชีวิต ปล่อยพลังเต่า!', go: showPageOffice },
-          { label: '📱 แถเอาตัวรอด "แฮ่ๆ ล้อเล่นพี่ พอดีผมทำคอนเทนต์ TikTok อยู่"', go: showPageOffice },
-          { label: '🧪 ควักยาดมในกระเป๋ายื่นให้พี่เขา แล้วแยกย้าย', go: showPageOffice },
-          { label: '🏃 หนีดีกว่า! รอจังหวะประตูรถไฟฟ้า รีบพุ่งตัวออกจากสถานีทันที', go: showPageOffice },
-          { label: '😭 ร้องไห้กลางรถไฟฟ้าให้ทุกคนรู้สึกผิดที่เขามาล้อเลียนเรา', go: showPageOffice },
+          {
+            label: "⚔️ ยอมรับคำท้า ยกแขนสุดชีวิต ปล่อยพลังเต่า!",
+            go: showPageOffice,
+          },
+          {
+            label:
+              '📱 แถเอาตัวรอด "แฮ่ๆ ล้อเล่นพี่ พอดีผมทำคอนเทนต์ TikTok อยู่"',
+            go: showPageOffice,
+          },
+          {
+            label: "🧪 ควักยาดมในกระเป๋ายื่นให้พี่เขา แล้วแยกย้าย",
+            go: showPageOffice,
+          },
+          {
+            label:
+              "🏃 หนีดีกว่า! รอจังหวะประตูรถไฟฟ้า รีบพุ่งตัวออกจากสถานีทันที",
+            go: showPageOffice,
+          },
+          {
+            label: "😭 ร้องไห้กลางรถไฟฟ้าให้ทุกคนรู้สึกผิดที่เขามาล้อเลียนเรา",
+            go: showPageOffice,
+          },
         ]);
       }
 
       function showPage_2B() {
         clearCard();
-        document.getElementById("main-title").textContent = "🤝สายเนียนหาพวกสามัคคี";
+        document.getElementById("main-title").textContent =
+          "🤝สายเนียนหาพวกสามัคคี";
         createImg("image_007/2B_2000x2000px.png");
-        
+
         document.getElementById("desc-text").innerHTML = `
           <div class="single-perfect-box">
             <div class="text-line">
@@ -555,29 +661,52 @@
             </div>
           </div>
         `;
-        
-        createStartButton("เหงาจัดสัส...วาร์ปไปดูเหตุการณ์ถัดไปดิ๊ 💀", showQuiz_2B);
+
+        createStartButton(
+          "เหงาจัดสัส...วาร์ปไปดูเหตุการณ์ถัดไปดิ๊ 💀",
+          showQuiz_2B,
+        );
       }
 
       function showQuiz_2B() {
         clearCard();
-        document.getElementById('main-title').textContent = '🪐โดนเทกลางตู้รถไฟ ตอนนี้เหงาจัด ๆ จะแก้เขินยังไงดีครับน้า?';
-        document.getElementById('badge-title').textContent = 'ทุกคนหนีไปหมดแล้ว คุณน้ายืนเด่นเป็นดาวกลางตู้';
-        
+        document.getElementById("main-title").textContent =
+          "🪐โดนเทกลางตู้รถไฟ ตอนนี้เหงาจัด ๆ จะแก้เขินยังไงดีครับน้า?";
+        document.getElementById("badge-title").textContent =
+          "ทุกคนหนีไปหมดแล้ว คุณน้ายืนเด่นเป็นดาวกลางตู้";
+
         createChoices([
-          { label: '💃 โพสท่าถ่ายแบบโหนราวอย่างมั่นใจต่อไป',                                  go: showPageOffice },
-          { label: '🎒 รีบเอากระเป๋าเป้อุ้มไว้ข้างหน้าเพื่อช่วยบังรักแร้',                    go: showPageOffice },
-          { label: '🏃 ก้มหน้าหยิบโทรศัพท์มาแกล้งพิมพ์คุยคนเดียวแก้เขิน',                    go: showPageOffice },
-          { label: '🛵 ทนสายตาพิฆาตไม่ไหว กดลงสถานีถัดไปแล้วเปลี่ยนไปนั่งวินแทน',            go: showPageOffice },
-          { label: '🗣️ ตะโกนเรียกสติทุกคน "หนีทำไม! สูดหายใจลึกๆดิ กลิ่นนี้แหละคือความเป็นคน!"',         go: showPageOffice },
+          {
+            label: "💃 โพสท่าถ่ายแบบโหนราวอย่างมั่นใจต่อไป",
+            go: showPageOffice,
+          },
+          {
+            label: "🎒 รีบเอากระเป๋าเป้อุ้มไว้ข้างหน้าเพื่อช่วยบังรักแร้",
+            go: showPageOffice,
+          },
+          {
+            label: "🏃 ก้มหน้าหยิบโทรศัพท์มาแกล้งพิมพ์คุยคนเดียวแก้เขิน",
+            go: showPageOffice,
+          },
+          {
+            label:
+              "🛵 ทนสายตาพิฆาตไม่ไหว กดลงสถานีถัดไปแล้วเปลี่ยนไปนั่งวินแทน",
+            go: showPageOffice,
+          },
+          {
+            label:
+              '🗣️ ตะโกนเรียกสติทุกคน "หนีทำไม! สูดหายใจลึกๆดิ กลิ่นนี้แหละคือความเป็นคน!"',
+            go: showPageOffice,
+          },
         ]);
       }
 
       function showPage_2C() {
         clearCard();
-        document.getElementById("main-title").textContent = "🏃‍♂️สายหน้าบางวิ่งหนีภัย";
+        document.getElementById("main-title").textContent =
+          "🏃‍♂️สายหน้าบางวิ่งหนีภัย";
         createImg("image_007/2C_2000x2000px.png");
-        
+
         document.getElementById("desc-text").innerHTML = `
           <div class="single-perfect-box">
             <div class="text-line">
@@ -586,29 +715,51 @@
             </div>
           </div>
         `;
-        
+
         createStartButton("เริ่มระยำตำบอนละ.. วาร์ปไปดูต่อดิ!🏃", showQuiz_2C);
       }
 
       function showQuiz_2C() {
         clearCard();
-        document.getElementById('main-title').textContent = '🦨 กรรมตามสนองระเบิดสอง สถานการณ์เลวร้ายขั้นสุด กลิ่นล่างก็มา กลิ่นบนก็มี ดับเครื่องชนยังไงต่อดี!';
-        document.getElementById('badge-title').textContent = 'กลิ่นเท้าระเบิด คนข้างๆ หนีไปหมดแล้ว!!';
-        
+        document.getElementById("main-title").textContent =
+          "🦨 กรรมตามสนองระเบิดสอง สถานการณ์เลวร้ายขั้นสุด กลิ่นล่างก็มา กลิ่นบนก็มี ดับเครื่องชนยังไงต่อดี!";
+        document.getElementById("badge-title").textContent =
+          "กลิ่นเท้าระเบิด คนข้างๆ หนีไปหมดแล้ว!!";
+
         createChoices([
-          { label: '🥾 แกล้งดมรองเท้าตัวเองแล้วทำหน้าเหม็น โยนขี้ให้เป็นความผิดของรองเท้า',  go: showPageOffice },
-          { label: '🗿 รีบยัดเท้ากลับรองเท้า ขยับนิ้วเท้าแน่นๆ นั่งนิ่งเหมือนหิน',           go: showPageOffice },
-          { label: '🤫 แกล้งเฉไฉเตะรองเท้าตัวเองไปซ่อนใต้เบาะคนอื่น',                            go: showPageOffice },
-          { label: '🛵 ยอมแพ้กับโชคชะตา รีบใส่รองเท้าแล้วเดินลงรถไฟฟ้าไปหาวินมอเตอร์ไซค์',            go: showPageOffice },
-          { label: '🤧 หยิบทิชชู่มาอุดจมูกตัวเอง แกล้งทำเป็นว่ากูก็ดมกลิ่นเท้าคนอื่นอยู่เหมือนกัน',        go: showPageOffice },
+          {
+            label:
+              "🥾 แกล้งดมรองเท้าตัวเองแล้วทำหน้าเหม็น โยนขี้ให้เป็นความผิดของรองเท้า",
+            go: showPageOffice,
+          },
+          {
+            label:
+              "🗿 รีบยัดเท้ากลับรองเท้า ขยับนิ้วเท้าแน่นๆ นั่งนิ่งเหมือนหิน",
+            go: showPageOffice,
+          },
+          {
+            label: "🤫 แกล้งเฉไฉเตะรองเท้าตัวเองไปซ่อนใต้เบาะคนอื่น",
+            go: showPageOffice,
+          },
+          {
+            label:
+              "🛵 ยอมแพ้กับโชคชะตา รีบใส่รองเท้าแล้วเดินลงรถไฟฟ้าไปหาวินมอเตอร์ไซค์",
+            go: showPageOffice,
+          },
+          {
+            label:
+              "🤧 หยิบทิชชู่มาอุดจมูกตัวเอง แกล้งทำเป็นว่ากูก็ดมกลิ่นเท้าคนอื่นอยู่เหมือนกัน",
+            go: showPageOffice,
+          },
         ]);
       }
 
       function showPage_2D() {
         clearCard();
-        document.getElementById("main-title").textContent = "💤 สายออสการ์แกล้งสลบ";
+        document.getElementById("main-title").textContent =
+          "💤 สายออสการ์แกล้งสลบ";
         createImg("image_007/2D_2000x2000px.png");
-        
+
         document.getElementById("desc-text").innerHTML = `
           <div class="single-perfect-box">
             <div class="text-line">
@@ -617,27 +768,50 @@
             </div>
           </div>
         `;
-        
-        createStartButton("สร้างเรื่องถึงขั้นส่งโรงบาล..ไปดูต่อดิ๊! 🏥", showQuiz_2D);
+
+        createStartButton(
+          "สร้างเรื่องถึงขั้นส่งโรงบาล..ไปดูต่อดิ๊! 🏥",
+          showQuiz_2D,
+        );
       }
 
       function showQuiz_2D() {
         clearCard();
-        document.getElementById('main-title').textContent = '😵 สลบพับคาอ้อมแขน พลเมืองดีกำลังจะผายปอด จังหวะนี้น้าจะยังไงต่อ?';
-        document.getElementById('badge-title').textContent = ' คุณน้า "สลบ" อยู่ในอ้อมแขนพลเมืองดี...';
-        
+        document.getElementById("main-title").textContent =
+          "😵 สลบพับคาอ้อมแขน พลเมืองดีกำลังจะผายปอด จังหวะนี้น้าจะยังไงต่อ?";
+        document.getElementById("badge-title").textContent =
+          ' คุณน้า "สลบ" อยู่ในอ้อมแขนพลเมืองดี...';
+
         createChoices([
-          { label: '👀 เด้งตัวตื่นตระหนกแก้เขิน "ผมฟื้นแล้วพี่! สบายดีมากก!" ',                     go: showPageOffice },
-          { label: '🗿 แข็งใจแกล้งสลบต่อ ปล่อยให้รถไฟพาไปไหนก็ไป ',                          go: showPageOffice },
-          { label: '👻 แกล้งละเมอพูดพึมพำ "กูเหม็นตัวเองจังวะ..."',                          go: showPageOffice },
-          { label: '💨 ลืมตาขึ้นมาสะบัดตัวหลุดจากพลเมืองดี แล้ววิ่งหนีลงรถไฟทันที ',                go: showPageOffice },
-          { label: '🥴 แกล้งชักกระตุกเบาๆ เพื่อให้คนคิดว่าเป็นโรคประจำตัว ไม่ใช่กลิ่นตัว',       go: showPageOffice },
+          {
+            label: '👀 เด้งตัวตื่นตระหนกแก้เขิน "ผมฟื้นแล้วพี่! สบายดีมากก!" ',
+            go: showPageOffice,
+          },
+          {
+            label: "🗿 แข็งใจแกล้งสลบต่อ ปล่อยให้รถไฟพาไปไหนก็ไป ",
+            go: showPageOffice,
+          },
+          {
+            label: '👻 แกล้งละเมอพูดพึมพำ "กูเหม็นตัวเองจังวะ..."',
+            go: showPageOffice,
+          },
+          {
+            label:
+              "💨 ลืมตาขึ้นมาสะบัดตัวหลุดจากพลเมืองดี แล้ววิ่งหนีลงรถไฟทันที ",
+            go: showPageOffice,
+          },
+          {
+            label:
+              "🥴 แกล้งชักกระตุกเบาๆ เพื่อให้คนคิดว่าเป็นโรคประจำตัว ไม่ใช่กลิ่นตัว",
+            go: showPageOffice,
+          },
         ]);
       }
 
       function showPage_2E() {
         clearCard();
-        document.getElementById("main-title").textContent = "💸 สายธุรกิจพลิกวิกฤต";
+        document.getElementById("main-title").textContent =
+          "💸 สายธุรกิจพลิกวิกฤต";
         createImg("image_007/2E_2000x2000px.png");
 
         document.getElementById("desc-text").innerHTML = `
@@ -648,27 +822,48 @@
             </div>
           </div>
         `;
-        
+
         createStartButton("รวยเฉย...กดวาร์ปไปนับเงินต่อ💸", showQuiz_2E);
       }
 
       function showQuiz_2E() {
         clearCard();
-        document.getElementById('main-title').textContent = '💵 พ่อค้ากลิ่นเต่ามือทอง ได้เงินมาฉลองความเหม็นแล้ว เอายังไงต่อดีครับน้า?';
-        document.getElementById('badge-title').textContent = '💰 เงินอยู่ในมือ สายตาพิฆาตปักอยู่ทุกทิศ';
-        
+        document.getElementById("main-title").textContent =
+          "💵 พ่อค้ากลิ่นเต่ามือทอง ได้เงินมาฉลองความเหม็นแล้ว เอายังไงต่อดีครับน้า?";
+        document.getElementById("badge-title").textContent =
+          "💰 เงินอยู่ในมือ สายตาพิฆาตปักอยู่ทุกทิศ";
+
         createChoices([
-          { label: '😎 ยิ้มรับเงินอย่างผู้ชนะ หุบแขนลง แล้วยืนมองยอดเงินอย่างมีความสุข ',         go: showPageOffice },
-          { label: '🧴 เอาเงินที่ได้ วิ่งลงรถไฟไปหาซื้อน้ำหอมตลาดนัดมาฉีดแก้ขัด',            go: showPageOffice },
-          { label: '🥷 แกล้งทำเนียนเดินไปขู่ตู้ถัดไปต่อเพื่อหาเงินเพิ่ม',                    go: showPageOffice },
-          { label: '👼 รู้สึกผิดทันทีเอาเงินนั้นหยอดตู้บริจาคเพื่อล้างบาป',         go: showPageOffice },
-          { label: '🤑 ควักโทรศัพท์ขึ้นมาอวดรูปเงินโชว์ลงเฟซบุ๊ก "ทำงานประจำมันเหนื่อย โชว์รักแร้ 2 นาทีรวยเลย" ',                go: showPageOffice },
+          {
+            label:
+              "😎 ยิ้มรับเงินอย่างผู้ชนะ หุบแขนลง แล้วยืนมองยอดเงินอย่างมีความสุข ",
+            go: showPageOffice,
+          },
+          {
+            label:
+              "🧴 เอาเงินที่ได้ วิ่งลงรถไฟไปหาซื้อน้ำหอมตลาดนัดมาฉีดแก้ขัด",
+            go: showPageOffice,
+          },
+          {
+            label: "🥷 แกล้งทำเนียนเดินไปขู่ตู้ถัดไปต่อเพื่อหาเงินเพิ่ม",
+            go: showPageOffice,
+          },
+          {
+            label: "👼 รู้สึกผิดทันทีเอาเงินนั้นหยอดตู้บริจาคเพื่อล้างบาป",
+            go: showPageOffice,
+          },
+          {
+            label:
+              '🤑 ควักโทรศัพท์ขึ้นมาอวดรูปเงินโชว์ลงเฟซบุ๊ก "ทำงานประจำมันเหนื่อย โชว์รักแร้ 2 นาทีรวยเลย" ',
+            go: showPageOffice,
+          },
         ]);
       }
 
       function showPageOffice() {
         clearCard();
-        document.getElementById("main-title").textContent = "💼 แต่ท้ายสุดคุณน้ารอดตายมาถึงที่ทำงานจนได้";
+        document.getElementById("main-title").textContent =
+          "💼 แต่ท้ายสุดคุณน้ารอดตายมาถึงที่ทำงานจนได้";
         createImg("image_007/office_2000x2000px.png");
 
         document.getElementById("desc-text").innerHTML = `
@@ -685,8 +880,9 @@
 
       function showPageMeeting() {
         clearCard();
-        document.getElementById("main-title").textContent = "🎁🆘ไอเทมกู้ชีพจากเพื่อนสนิท";
-        
+        document.getElementById("main-title").textContent =
+          "🎁🆘ไอเทมกู้ชีพจากเพื่อนสนิท";
+
         document.getElementById("desc-text").innerHTML = `
             <div class="single-perfect-box" style="margin-bottom: 5px;">
                 <div class="text-line">
@@ -705,22 +901,43 @@
                 </div>
             </div>
         `;
-        
+
         createStartButton("ฉีด FreshD สู้ตาย!💨", showPageFreshDChoice);
       }
 
       function showPageFreshDChoice() {
         clearCard();
-        document.getElementById("main-title").textContent = "🚨 นาทีชีวิตกู้ชีพด้วย FreshD 🚨";
-        document.getElementById('badge-title').textContent = 'คุณน้าจะทำอย่างไรกับ FreshD ขวดนี้ดี? ';
-      
-        
+        document.getElementById("main-title").textContent =
+          "🚨 นาทีชีวิตกู้ชีพด้วย FreshD 🚨";
+        document.getElementById("badge-title").textContent =
+          "คุณน้าจะทำอย่างไรกับ FreshD ขวดนี้ดี? ";
+
         createChoices([
-          { label: '<strong>✨ ฉีดหน้าห้องประชุมรัวๆ:</strong><br> ฉีดแม่งตรงนั้นแหละสัส! ดับเบิ้ลแท็บทั้งรักแร้ ทั้งเท้า ทั้งอากาศรอบตัว ชุบชีวิตเพื่อนร่วมงานและบอสให้ฟื้นคืนชีพจากความตายทันที!', go: showResult1 },
-          { label: '<strong>✨ วิ่งหนีไปฉีดในห้องน้ำเงียบๆ:</strong><br> ขอหลบไปซับน้ำตาบวกตั้งหลักในเซฟโซนแป๊บ เช็ดเหงื่อ เช็ดซากเท้า แล้วกดยัด FreshD รัว ๆ ให้มั่นใจหน้าเด้งไข่สั่น ค่อยกลับมาสู้ใหม่!', go: showResult2 },
-          { label: '<strong>✨ เปิดขายให้เพื่อนร่วมงาน!:</strong><br> ในเมื่อตอนนี้พวกมึงกำลังจะตายเพราะกลิ่นกู งั้นกูพลิกวิกฤตเป็นเม็ดเงิน เอา FreshD มาเปิดฉีดพ่นแบ่งขายในห้องประชุมซะเลย สูดดมทีละปั๊ม ปั๊มละ 20 โอนไวตู้ไม่แตก รวยซ้ำรวยซ้อนสัส ๆ!', go: showResult3 },
-          { label: '<strong>✨ เออๆ ลองซื้ออุดหนุนมึงสักขวดก็ได้วะ!:</strong><br> ยอมใจแบรนด์ FreshD ที่แม่งอุตส่าห์เขียนเนื้อเรื่องแตกแขนง ขยี้ความซวยกูตั้งแต่นั่งรถไฟฟ้ายันเข้าห้องประชุมขนาดนี้ กดสั่งซื้อในตะกร้าประชดโชคชะตาไปเลยดิวะ!', go: showResult4 },
-          { label: '<strong>✨ เหมา 3 ขวด! ส่งควิซนี้ประจานในกลุ่มไลน์เพื่อนด่วน!:</strong><br> แท็กเพื่อนสนิททั้งกลุ่มแล้วตะโกนบอก "พวกมึงมาเล่นด่านนี้เลยสัส กลิ่นเท้าในเรื่องเหมือนของมึงเป๊ะ!" พร้อมเหมาสเปรย์ไปแจกพวกมันอุดรูจมูกคนละขวด!', go: showResult5 },
+          {
+            label:
+              "<strong>✨ ฉีดหน้าห้องประชุมรัวๆ:</strong><br> ฉีดแม่งตรงนั้นแหละสัส! ดับเบิ้ลแท็บทั้งรักแร้ ทั้งเท้า ทั้งอากาศรอบตัว ชุบชีวิตเพื่อนร่วมงานและบอสให้ฟื้นคืนชีพจากความตายทันที!",
+            go: showResult1,
+          },
+          {
+            label:
+              "<strong>✨ วิ่งหนีไปฉีดในห้องน้ำเงียบๆ:</strong><br> ขอหลบไปซับน้ำตาบวกตั้งหลักในเซฟโซนแป๊บ เช็ดเหงื่อ เช็ดซากเท้า แล้วกดยัด FreshD รัว ๆ ให้มั่นใจหน้าเด้งไข่สั่น ค่อยกลับมาสู้ใหม่!",
+            go: showResult2,
+          },
+          {
+            label:
+              "<strong>✨ เปิดขายให้เพื่อนร่วมงาน!:</strong><br> ในเมื่อตอนนี้พวกมึงกำลังจะตายเพราะกลิ่นกู งั้นกูพลิกวิกฤตเป็นเม็ดเงิน เอา FreshD มาเปิดฉีดพ่นแบ่งขายในห้องประชุมซะเลย สูดดมทีละปั๊ม ปั๊มละ 20 โอนไวตู้ไม่แตก รวยซ้ำรวยซ้อนสัส ๆ!",
+            go: showResult3,
+          },
+          {
+            label:
+              "<strong>✨ เออๆ ลองซื้ออุดหนุนมึงสักขวดก็ได้วะ!:</strong><br> ยอมใจแบรนด์ FreshD ที่แม่งอุตส่าห์เขียนเนื้อเรื่องแตกแขนง ขยี้ความซวยกูตั้งแต่นั่งรถไฟฟ้ายันเข้าห้องประชุมขนาดนี้ กดสั่งซื้อในตะกร้าประชดโชคชะตาไปเลยดิวะ!",
+            go: showResult4,
+          },
+          {
+            label:
+              '<strong>✨ เหมา 3 ขวด! ส่งควิซนี้ประจานในกลุ่มไลน์เพื่อนด่วน!:</strong><br> แท็กเพื่อนสนิททั้งกลุ่มแล้วตะโกนบอก "พวกมึงมาเล่นด่านนี้เลยสัส กลิ่นเท้าในเรื่องเหมือนของมึงเป๊ะ!" พร้อมเหมาสเปรย์ไปแจกพวกมันอุดรูจมูกคนละขวด!',
+            go: showResult5,
+          },
         ]);
       }
 
@@ -728,7 +945,7 @@
         clearCard();
         document.getElementById("main-title").textContent = `${badge}`;
         document.getElementById("badge-title").textContent = "";
-        
+
         document.getElementById("desc-text").innerHTML = `
             <div class="single-perfect-box" style="margin-bottom: 5px;">
                 <div class="text-line">
@@ -758,23 +975,46 @@
         createResultButtons();
       }
 
-      function showResult1() { showResult("😇 นักบุญทุนน้อย",
-       "คุณน้าเป็นคนใจดี ขี้เกรงใจ ยอมรับชะตากรรมเพื่อความสุขสงบคุณน้าเป็นคนดีศรีสังคม มีสัญชาตญาณนักกู้ภัยสูงมาก เอะอะชอบเอาความทุกข์ของคนอื่นมาแบกไว้เอง ตัวเองซวยอยู่แท้ๆ แต่พอได้ของดีมาปุ๊บ รีบแผ่เมตตาฉีดแจกจ่ายทันที เป็นเพื่อนประเภทที่ทุกคนควรคบไว้ เพราะถ้าไปเที่ยวป่าแล้วโดนงูกัด คุณน้าจะเป็นคนแรกที่ยอมใช้ปากดูดพิษให้เพื่อนแน่นอน!", 
-       "ควรพก FreshD ไว้ฉีดเพื่อเพิ่มความมั่นใจเต็มร้อยในชีวิตประจำวัน", "video/saint_1.mp4"); }
-      function showResult2() { showResult("🥷 นินจาสายห่วงสวย", 
-      "คุณน้าเป็นพวกสมบูรณ์แบบ (Perfectionist) ที่แอบดื้อเงียบ ต่อให้สถานการณ์รอบตัวจะวินาศสันตะโรแค่ไหน สันหลังคุณน้าต้องตรง และภาพลักษณ์คุณต้องเป๊ะ! คุณน้ายอมเสียเวลาวิ่งไปแอบดีกว่าให้ใครเห็นตอนกำลังฉีดรักแร้ เป็นคนไหวพริบดี เอาตัวรอดในสังคมเก่ง แต่อย่าให้ฟิวส์ขาดนะ เพราะคุณน้าพร้อมจะบล็อกทุกคนหายไปในกลีบเมฆทันที",
-      "ฉีดระงับกลิ่นก่อนออกจากบ้านทุกเช้าจะช่วยรักษามาดนินจาของคุณไว้ได้", 
-      "video/ninja_1.mp4"); }
-      function showResult3() { showResult("🐯 เสือหิวสายตลบตะแลง", 
-      "หัวหมอขั้นสุดยอด! คุณน้าคือมนุษย์ประเภทที่มีดีเอ็นเอของพ่อค้าหน้าเงินไหลเวียนอยู่ในกระแสเลือด ขนาดตัวเองเป็นต้นเหตุของมหันตภัยกลิ่น ยังมีหน้าจะมาหาผลประโยชน์จากลมหายใจเพื่อนอีก! เป็นคนฉลาดแกมโกง เอาตัวรอดเก่งระดับสิบ ไม่มีวันอดตาย แต่อาจจะโดนเพื่อนรุมสกรัมตายก่อนได้รวย", 
-      "ลองแนะนำ FreshD ให้เพื่อน ๆ ด้วยความจริงใจ จะเพิ่มเสน่ห์ขึ้นอีกเป็นกอง", "video/tiger_1.mp4"); }
-      function showResult4() { showResult("💸 สายเปย์ขี้ใจอ่อน", 
-      "ปากแข็งแต่ใจดีมาก! คุณน้าชอบบ่นโน่นบ่นนี่ ทำเป็นเหมือนจะรำคาญ แต่ลึกๆ คุณเป็นคนโคตรเท่ อารมณ์ดี และแพ้ทางความพยายามของคนอื่น คุณน้ามองว่าการซื้อครั้งนี้ไม่ใช่แค่ซื้อสเปรย์ฉีดรักแร้ แต่เป็นการซื้อความบันเทิงและให้รางวัลความทุ่มเทของทีมงาน เป็นคนน่ารักที่ใครอยู่ด้วยก็สบายใจ (โดยเฉพาะถ้ามี FreshD อยู่ในมือ)", 
-      "เปย์ตัวเองด้วยสเปรย์ดี ๆ สักขวด รับรองวงแขนหอมฟุ้งจนใคร ๆ ก็อยากใกล้", "video/softpay_1.mp4"); }
-      function showResult5() { showResult("😎 หัวโจกสายปั่น", 
-      "คุณน้ามันตัวร้าย! แทนที่จะสำนึกผิดคนเดียว คุณน้าเลือกที่จะลากเพื่อนทั้งแก๊งมาลงนรก (และดมกลิ่น) ไปพร้อมกัน คุณน้ารักเพื่อนมากนะ แต่รักในการได้แกล้งและได้ประจานเพื่อนมากกว่า เป็นคนตลกธรรมชาติ มนุษยสัมพันธ์ดีเลิศ และคลิปไหนที่คุณแชร์ กลุ่มไลน์นั้นจะไฟลุกทันที!", 
-      "ตลกแล้วต้องตัวหอมด้วยนะ พกติดกระเป๋าไว้ลุยได้ทุกสถานการณ์คอนเทนต์เลย", "video/boss_1.mp4"); }
-
+      function showResult1() {
+        showResult(
+          "😇 นักบุญทุนน้อย",
+          "คุณน้าเป็นคนใจดี ขี้เกรงใจ ยอมรับชะตากรรมเพื่อความสุขสงบคุณน้าเป็นคนดีศรีสังคม มีสัญชาตญาณนักกู้ภัยสูงมาก เอะอะชอบเอาความทุกข์ของคนอื่นมาแบกไว้เอง ตัวเองซวยอยู่แท้ๆ แต่พอได้ของดีมาปุ๊บ รีบแผ่เมตตาฉีดแจกจ่ายทันที เป็นเพื่อนประเภทที่ทุกคนควรคบไว้ เพราะถ้าไปเที่ยวป่าแล้วโดนงูกัด คุณน้าจะเป็นคนแรกที่ยอมใช้ปากดูดพิษให้เพื่อนแน่นอน!",
+          "ควรพก FreshD ไว้ฉีดเพื่อเพิ่มความมั่นใจเต็มร้อยในชีวิตประจำวัน",
+          "video/saint_1.mp4",
+        );
+      }
+      function showResult2() {
+        showResult(
+          "🥷 นินจาสายห่วงสวย",
+          "คุณน้าเป็นพวกสมบูรณ์แบบ (Perfectionist) ที่แอบดื้อเงียบ ต่อให้สถานการณ์รอบตัวจะวินาศสันตะโรแค่ไหน สันหลังคุณน้าต้องตรง และภาพลักษณ์คุณต้องเป๊ะ! คุณน้ายอมเสียเวลาวิ่งไปแอบดีกว่าให้ใครเห็นตอนกำลังฉีดรักแร้ เป็นคนไหวพริบดี เอาตัวรอดในสังคมเก่ง แต่อย่าให้ฟิวส์ขาดนะ เพราะคุณน้าพร้อมจะบล็อกทุกคนหายไปในกลีบเมฆทันที",
+          "ฉีดระงับกลิ่นก่อนออกจากบ้านทุกเช้าจะช่วยรักษามาดนินจาของคุณไว้ได้",
+          "video/ninja_1.mp4",
+        );
+      }
+      function showResult3() {
+        showResult(
+          "🐯 เสือหิวสายตลบตะแลง",
+          "หัวหมอขั้นสุดยอด! คุณน้าคือมนุษย์ประเภทที่มีดีเอ็นเอของพ่อค้าหน้าเงินไหลเวียนอยู่ในกระแสเลือด ขนาดตัวเองเป็นต้นเหตุของมหันตภัยกลิ่น ยังมีหน้าจะมาหาผลประโยชน์จากลมหายใจเพื่อนอีก! เป็นคนฉลาดแกมโกง เอาตัวรอดเก่งระดับสิบ ไม่มีวันอดตาย แต่อาจจะโดนเพื่อนรุมสกรัมตายก่อนได้รวย",
+          "ลองแนะนำ FreshD ให้เพื่อน ๆ ด้วยความจริงใจ จะเพิ่มเสน่ห์ขึ้นอีกเป็นกอง",
+          "video/tiger_1.mp4",
+        );
+      }
+      function showResult4() {
+        showResult(
+          "💸 สายเปย์ขี้ใจอ่อน",
+          "ปากแข็งแต่ใจดีมาก! คุณน้าชอบบ่นโน่นบ่นนี่ ทำเป็นเหมือนจะรำคาญ แต่ลึกๆ คุณเป็นคนโคตรเท่ อารมณ์ดี และแพ้ทางความพยายามของคนอื่น คุณน้ามองว่าการซื้อครั้งนี้ไม่ใช่แค่ซื้อสเปรย์ฉีดรักแร้ แต่เป็นการซื้อความบันเทิงและให้รางวัลความทุ่มเทของทีมงาน เป็นคนน่ารักที่ใครอยู่ด้วยก็สบายใจ (โดยเฉพาะถ้ามี FreshD อยู่ในมือ)",
+          "เปย์ตัวเองด้วยสเปรย์ดี ๆ สักขวด รับรองวงแขนหอมฟุ้งจนใคร ๆ ก็อยากใกล้",
+          "video/softpay_1.mp4",
+        );
+      }
+      function showResult5() {
+        showResult(
+          "😎 หัวโจกสายปั่น",
+          "คุณน้ามันตัวร้าย! แทนที่จะสำนึกผิดคนเดียว คุณน้าเลือกที่จะลากเพื่อนทั้งแก๊งมาลงนรก (และดมกลิ่น) ไปพร้อมกัน คุณน้ารักเพื่อนมากนะ แต่รักในการได้แกล้งและได้ประจานเพื่อนมากกว่า เป็นคนตลกธรรมชาติ มนุษยสัมพันธ์ดีเลิศ และคลิปไหนที่คุณแชร์ กลุ่มไลน์นั้นจะไฟลุกทันที!",
+          "ตลกแล้วต้องตัวหอมด้วยนะ พกติดกระเป๋าไว้ลุยได้ทุกสถานการณ์คอนเทนต์เลย",
+          "video/boss_1.mp4",
+        );
+      }
     </script>
   </body>
 </html>
