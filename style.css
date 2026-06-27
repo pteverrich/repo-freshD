@@ -8,23 +8,17 @@
 
 body {
   min-height: 100vh;
+  background-color: #faf6f0;
   background-image:
-    radial-gradient(
-      circle at 30% 70%,
-      rgba(173, 216, 230, 0.35),
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 70% 30%,
-      rgba(255, 182, 193, 0.4),
-      transparent 60%
-    );
+    radial-gradient(circle at 15% 15%, rgba(232, 222, 248, 0.55), transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(255, 192, 203, 0.5), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(173, 216, 230, 0.3), transparent 60%);
   font-family: "Mali", cursive, sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 20px;
-  color: black;
+  color: #3c2f2f;
 }
 
 /* โครงสร้างหลัก (ปรับให้ Responsive แบบเนียนๆ) */
@@ -45,9 +39,10 @@ body {
   font-size: 25px;
   font-weight: 700;
   color: #5c4033;
-  line-height: 1.4;
+  line-height: 1.45;
   margin: 5px 0;
-  word-break: keep-all;
+  word-break: normal;
+  line-break: loose;
   overflow-wrap: break-word;
 }
 
@@ -56,9 +51,10 @@ body {
   font-size: 15px;
   font-weight: 500;
   color: #8b7355;
-  line-height: 1.4;
+  line-height: 1.45;
   margin-bottom: 2px;
-  word-break: keep-all;
+  word-break: normal;
+  line-break: loose;
   overflow-wrap: break-word;
 }
 
@@ -91,16 +87,18 @@ body {
   max-width: 90%;
   box-sizing: border-box;
   white-space: normal;
-  word-break: break-word;
+  word-break: normal;
+  line-break: loose;
+  overflow-wrap: break-word;
   padding: 14px 25px;
-  line-height: 1.4;
+  line-height: 1.45;
   background-color: #fee6e3;
   border: 2px solid #111;
   border-radius: 12px;
   color: #111;
   cursor: pointer;
   font-family: "Mali", cursive, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   position: relative;
   text-align: center;
@@ -138,29 +136,29 @@ body {
 /* ปุ่มตัวเลือกช้อยส์ */
 .btn-choice {
   display: flex !important;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   width: 100%;
   max-width: 100%;
   font-family: "Mali", cursive, sans-serif;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
   text-align: left;
-  padding: 15px 18px;
+  padding: 12px 18px;
   color: #5c4033;
   background: #ffffff;
   border: 2px solid #eaddca;
-  border-radius: 20px;
+  border-radius: 18px;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+  box-shadow: 0 4px 6px rgba(92, 64, 51, 0.02);
   box-sizing: border-box;
 }
 
 .btn-choice .text-content-wrapper {
   flex: 1;
-  line-height: 1.4;
-  word-break: keep-all !important;
+  line-height: 1.5;
+  word-break: normal !important;
+  line-break: loose !important;
   overflow-wrap: break-word !important;
 }
 
@@ -189,60 +187,71 @@ body {
   text-align: left;
   width: 100%;
   max-width: 100%;
+  word-break: normal;
+  line-break: loose;
+  overflow-wrap: break-word;
 }
 
 /* ดีไซน์กล่องครีมมน */
 .single-perfect-box {
-  background: #fdfaf6;
-  border-radius: 26px;
-  padding: 22px 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(135deg, #fdfbf7 0%, #faf5ef 100%);
+  border: 1px solid rgba(234, 221, 202, 0.5);
+  border-radius: 24px;
+  padding: 20px 18px;
+  box-shadow: 0 15px 30px rgba(92, 64, 51, 0.05);
   max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   animation: smoothPopup 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .single-perfect-box .text-line {
-  font-size: 19px !important;
-  line-height: 1.5 !important;
-  color: #2b2b2b !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  color: #4a3e3d !important;
   text-align: left;
-  word-break: keep-all;
+  word-break: normal;
+  line-break: loose;
   overflow-wrap: break-word;
 }
 
 .single-perfect-box .text-line strong {
-  font-size: 19px !important;
-  color: #000000 !important;
+  font-size: 16px !important;
+  color: #2a1508 !important;
 }
 
 /* สไตล์เฉพาะสำหรับการจัดเรียงข้อความหน้าแรกตามบรีฟคุณน้า */
 .landing-desc-wrapper {
   text-align: left;
-  padding: 5px 10px;
+  padding: 8px 12px;
 }
 
 .landing-paragraph {
-  font-size: 17px !important;
-  line-height: 1.6 !important;
-  color: #333333;
-  margin-bottom: 18px;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  color: #4a3e3d;
+  margin-bottom: 16px;
+  word-break: normal;
+  line-break: loose;
+  overflow-wrap: break-word;
 }
 
 .landing-paragraph strong {
   font-weight: 700;
-  color: #000000;
+  color: #2a1508;
 }
 
 .footer-credit {
-  font-size: 16px;
+  font-size: 13px;
   color: #b0a394;
   margin-top: 30px;
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: normal;
+  line-break: loose;
+  overflow-wrap: break-word;
 }
 
 @keyframes fadeIn {
@@ -272,16 +281,17 @@ body {
    ======================================================= */
 @media (min-width: 1024px) {
   body {
-    padding: 50px 20px;
+    padding: 60px 20px;
   }
 
   .quiz-landing-container {
     max-width: 800px;
-    gap: 24px !important;
+    gap: 28px !important;
   }
 
   #img-box {
     max-width: 720px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   }
 
   #main-title {
@@ -290,22 +300,37 @@ body {
   }
 
   #badge-title {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .landing-paragraph {
-    font-size: 20px !important;
+    font-size: 19px !important;
+    line-height: 1.75 !important;
+  }
+
+  .single-perfect-box {
+    padding: 30px 28px;
+    gap: 16px;
+  }
+
+  .single-perfect-box .text-line {
+    font-size: 19px !important;
     line-height: 1.7 !important;
   }
 
+  .single-perfect-box .text-line strong {
+    font-size: 19px !important;
+  }
+
   .btn-choice {
-    padding: 18px 24px;
-    font-size: 21px;
-    border-radius: 24px;
+    padding: 16px 24px;
+    font-size: 19px;
+    border-radius: 22px;
   }
 
   .btn-start {
-    font-size: 26px;
-    padding: 14px 55px;
+    font-size: 24px;
+    padding: 16px 60px;
+    border-radius: 14px;
   }
 }
