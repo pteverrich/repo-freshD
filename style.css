@@ -42,8 +42,9 @@ body {
   line-height: 1.45;
   margin: 5px 0;
   word-break: normal;
-  line-break: loose;
-  overflow-wrap: break-word;
+  line-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 
 /* คำโปรยย่อยใต้หัวข้อ */
@@ -54,8 +55,9 @@ body {
   line-height: 1.45;
   margin-bottom: 2px;
   word-break: normal;
-  line-break: loose;
-  overflow-wrap: break-word;
+  line-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 
 /* กล่องแสดงรูปหลัก / วิดีโอ */
@@ -88,8 +90,9 @@ body {
   box-sizing: border-box;
   white-space: normal;
   word-break: normal;
-  line-break: loose;
-  overflow-wrap: break-word;
+  line-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
   padding: 14px 25px;
   line-height: 1.45;
   background-color: #fee6e3;
@@ -158,8 +161,9 @@ body {
   flex: 1;
   line-height: 1.5;
   word-break: normal !important;
-  line-break: loose !important;
-  overflow-wrap: break-word !important;
+  line-break: normal !important;
+  overflow-wrap: normal !important;
+  word-wrap: normal !important;
 }
 
 .btn-choice:hover {
@@ -188,8 +192,9 @@ body {
   width: 100%;
   max-width: 100%;
   word-break: normal;
-  line-break: loose;
-  overflow-wrap: break-word;
+  line-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 
 /* ดีไซน์กล่องครีมมน */
@@ -214,8 +219,9 @@ body {
   color: #4a3e3d !important;
   text-align: left;
   word-break: normal;
-  line-break: loose;
-  overflow-wrap: break-word;
+  line-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 
 .single-perfect-box .text-line strong {
@@ -235,8 +241,9 @@ body {
   color: #4a3e3d;
   margin-bottom: 16px;
   word-break: normal;
-  line-break: loose;
-  overflow-wrap: break-word;
+  line-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 
 .landing-paragraph strong {
@@ -250,8 +257,9 @@ body {
   margin-top: 30px;
   line-height: 1.5;
   word-break: normal;
-  line-break: loose;
-  overflow-wrap: break-word;
+  line-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 
 @keyframes fadeIn {
