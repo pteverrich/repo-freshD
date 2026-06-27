@@ -2,6 +2,42 @@
     HELPER FUNCTIONS
    ════════════════════════════════════════ */
 
+function applyThaiSegmentation() {
+  const container = document.querySelector(".quiz-landing-container");
+  if (!container) return;
+  if (typeof Intl === "undefined" || !Intl.Segmenter) return;
+  try {
+    const segmenter = new Intl.Segmenter("th", { granularity: "word" });
+    const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    const textNodes = [];
+    while (node = walk.nextNode()) {
+      const parent = node.parentNode;
+      if (parent && (parent.tagName === "SCRIPT" || parent.tagName === "STYLE" || parent.tagName === "NOSCRIPT")) {
+        continue;
+      }
+      textNodes.push(node);
+    }
+    textNodes.forEach(node => {
+      const originalText = node.nodeValue;
+      if (!originalText || originalText.trim() === "" || originalText.includes("\u200b")) {
+        return;
+      }
+      const segments = segmenter.segment(originalText);
+      let newText = "";
+      for (const segment of segments) {
+        newText += segment.segment;
+        if (segment.isWordLike) {
+          newText += "\u200b";
+        }
+      }
+      node.nodeValue = newText;
+    });
+  } catch (e) {
+    console.error("Thai segmenter error:", e);
+  }
+}
+
 function clearCard() {
   document.getElementById("main-title").textContent = "";
   document.getElementById("badge-title").textContent = "";
@@ -21,6 +57,7 @@ function createStartButton(label, onClick, customStyle) {
   }
   btn.addEventListener("click", onClick);
   area.appendChild(btn);
+  applyThaiSegmentation();
 }
 
 function cleanThaiTypography(text) {
@@ -67,6 +104,7 @@ function createChoices(choicesArray) {
 
     targetArea.appendChild(btn);
   });
+  applyThaiSegmentation();
 }
 
 function createImg(src) {
