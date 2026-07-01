@@ -191,8 +191,8 @@ function initGame() {
 
   document.getElementById("desc-text").innerHTML = `
     <div class="landing-desc-wrapper">
-      <div class="landing-paragraph">
-        🤢 <strong>ตื่นมาแล้วลืมฉีดสเปรย์... คุณน้าจะเป็นสายไหนในวันนั้น?</strong>
+      <div class="landing-paragraph" style="text-align: center; margin-bottom: 0;">
+        🤢 ตื่นมาแล้วลืมฉีดสเปรย์... คุณน้าจะทำยังไงในวันนั้น?
       </div>
       <div class="landing-paragraph" style="text-align: center; margin-bottom: 0;">
         ✨ <strong>มาเล่นเลย แล้วมาดูกันว่าลึกๆ แล้ว คุณน้าคือมนุษย์สายไหนกันแน่!?</strong>
