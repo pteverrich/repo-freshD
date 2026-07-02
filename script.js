@@ -57,36 +57,6 @@ const RESULT_IMAGES = {
 
 let currentResultBadge = "";
 
-function shareResult() {
-  const pageUrl = window.location.href;
-  const shareText = `ฉันได้รับตำแหน่ง "${currentResultBadge}" 🎉\nมาลองสแกนกรรมกลิ่นเต่าของคุณน้าบ้างเลย! 🐢👃\n${pageUrl}`;
-  const imgFile = RESULT_IMAGES[currentResultBadge] || "";
-
-  if (navigator.share && imgFile) {
-    fetch(imgFile)
-      .then(function (r) { return r.blob(); })
-      .then(function (blob) {
-        const file = new File([blob], imgFile, { type: blob.type });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          return navigator.share({ files: [file], text: shareText });
-        }
-        return navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: shareText, url: pageUrl });
-      })
-      .catch(function (err) {
-        if (err && err.name === "AbortError") return;
-        fallbackCopy(pageUrl);
-      });
-    return;
-  }
-
-  if (navigator.share) {
-    navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: shareText, url: pageUrl }).catch(function () { });
-    return;
-  }
-
-  fallbackCopy(pageUrl);
-}
-
 function fallbackCopy(url) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(url).then(function () {
