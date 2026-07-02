@@ -260,7 +260,7 @@ function createResultButtons() {
 function shareResult() {
   const pageUrl = window.location.href;
   const imgFile = RESULT_IMAGES[currentResultBadge] || "";
-  const shareText = `ฉันได้รับตำแหน่ง "${currentResultBadge}" 🎉 มาลองสแกนกรรมกลิ่นเต่าบ้างเลย! 🐢👃\n${pageUrl}`;
+  const shareText = `ฉันได้รับตำแหน่ง "${currentResultBadge}" 🎉 มาลองสแกนกรรมกลิ่นเต่าบ้างเลย! 🐢👃\n\n${pageUrl}`;
 
   if (navigator.share && imgFile) {
     fetch(imgFile)
@@ -268,7 +268,7 @@ function shareResult() {
       .then(function (blob) {
         const file = new File([blob], imgFile.split("/").pop(), { type: blob.type });
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          return navigator.share({ files: [file], text: shareText });
+          return navigator.share({ files: [file], text: shareText, url: pageUrl });
         }
         return navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: shareText, url: pageUrl });
       })
@@ -279,7 +279,6 @@ function shareResult() {
     return;
   }
 
-  // desktop fallback → copy link
   if (navigator.clipboard) {
     navigator.clipboard.writeText(pageUrl).then(function () {
       showToast("📋 คัดลอกลิงก์แล้ว! เอาไปแปะในไลน์หรือโซเชียลได้เลยจ้า 💜");
