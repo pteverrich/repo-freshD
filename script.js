@@ -48,11 +48,11 @@ function clearCard() {
 }
 
 const RESULT_IMAGES = {
-  "😇 นักบุญทุนน้อย": "showResult1.png",
-  "🥷 นินจาสายห่วงสวย": "showResult2.png",
-  "🐯 เสือหิวสายตลบตะแลง": "showResult3.png",
-  "💸 สายเปย์ขี้ใจอ่อน": "showResult4.png",
-  "😎 หัวโจกสายปั่น": "showResult5.png",
+  "นักบุญทุนน้อย": "/images_007/showResult1.png",
+  "นินจาสายห่วงสวย": "/images_007/showResult2.png",
+  "เสือหิวสายตลบตะแลง": "/images_007/showResult3.png",
+  "สายเปย์ขี้ใจอ่อน": "/images_007/showResult4.png",
+  "หัวโจกสายปั่น": "/images_007/showResult5.png",
 };
 
 let currentResultBadge = "";
@@ -748,7 +748,7 @@ function showPageFreshDChoice() {
 
 function showResult(badge, text1, text2, vidSrc) {
   clearCard();
-  currentResultBadge = badge;
+  currentResultBadge = badge.replace(/^\p{Emoji}\s*/u, "");
   document.getElementById("main-title").textContent = `${badge}`;
   document.getElementById("badge-title").textContent = "";
 
