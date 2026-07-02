@@ -206,6 +206,16 @@ function createResultButtons() {
   );
 
   createStartButton(
+    "🔗 คัดลอกลิงก์",
+    function () {
+      navigator.clipboard.writeText("https://pteverrich.github.io/repo-freshD/").then(function () {
+        showToast("📋 คัดลอกแล้ว! เอาไปแปะได้เลยจ้า 💜");
+      });
+    },
+    "font-size:18px; padding:10px 30px; background:#f3eefe; border-color:#cdb4db; color:#6a3fa0; margin-top:4px;",
+  );
+
+  createStartButton(
     "🔄 กลับหน้าแรก",
     function () {
       location.reload();
@@ -258,69 +268,32 @@ function createResultButtons() {
 
 
 function shareResult() {
-  const pageUrl = "https://pteverrich.github.io/repo-freshD/";
-  const coverImg = "https://pteverrich.github.io/repo-freshD/image_007/go_cover.png";
-  const shareText = encodeURIComponent(`มาลองสแกนกรรมกลิ่นเต่าบ้างเลย! 🐢👃 ฉันได้รับตำแหน่ง "${currentResultBadge}" 🎉`);
-  const encodedUrl = encodeURIComponent(pageUrl);
+  const pageUrl = window.location.href;
+  const imgFile = RESULT_IMAGES[currentResultBadge] || "";
+  const shareText = `ฉันได้รับตำแหน่ง "${currentResultBadge}" 🎉 มาลองสแกนกรรมกลิ่นเต่าบ้างเลย! 🐢👃\n\n${pageUrl}`;
 
-  const old = document.getElementById("share-modal-overlay");
-  if (old) old.remove();
+  if (navigator.share && imgFile) {
+    fetch(imgFile)
+      .then(function (r) { return r.blob(); })
+      .then(function (blob) {
+        const file = new File([blob], imgFile.split("/").pop(), { type: blob.type });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          return navigator.share({ files: [file], text: shareText, url: pageUrl });
+        }
+        return navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: shareText, url: pageUrl });
+      })
+      .catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: shareText, url: pageUrl }).catch(function () { });
+      });
+    return;
+  }
 
-  const overlay = document.createElement("div");
-  overlay.id = "share-modal-overlay";
-  overlay.style.cssText = `
-    position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;
-    display:flex;align-items:flex-end;justify-content:center;
-  `;
-
-  overlay.innerHTML = `
-    <div style="
-      background:#fff;border-radius:24px 24px 0 0;
-      padding:20px 20px 40px;width:100%;max-width:500px;
-      font-family:'Mali',cursive;
-    ">
-      <!-- Card Preview -->
-      <div style="border:1px solid #eee;border-radius:16px;overflow:hidden;margin-bottom:20px;">
-        <img src="${coverImg}" style="width:100%;display:block;max-height:180px;object-fit:cover;">
-        <div style="padding:12px 14px;">
-          <div style="font-size:11px;color:#999;margin-bottom:4px;">PTEVERRICH.GITHUB.IO</div>
-          <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px;">สแกนกรรมกลิ่นเต่า 🐢</div>
-          <div style="font-size:13px;color:#666;">มาดูกันว่าคุณน้าคือมนุษย์สายไหนกันแน่!?</div>
-        </div>
-      </div>
-
-      <!-- Share Buttons -->
-      <div style="display:flex;justify-content:space-around;margin-bottom:16px;">
-        <div onclick="navigator.clipboard.writeText('${pageUrl}').then(()=>showToast('📋 คัดลอกแล้ว!'))" style="text-align:center;cursor:pointer;">
-          <div style="width:56px;height:56px;border-radius:50%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 6px;">🔗</div>
-          <div style="font-size:12px;color:#333;">คัดลอกลิงก์</div>
-        </div>
-        <div onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}','_blank')" style="text-align:center;cursor:pointer;">
-          <div style="width:56px;height:56px;border-radius:50%;background:#1877f2;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 6px;">f</div>
-          <div style="font-size:12px;color:#333;">Facebook</div>
-        </div>
-        <div onclick="window.open('https://social-plugins.line.me/lineit/share?url=${encodedUrl}&text=${shareText}','_blank')" style="text-align:center;cursor:pointer;">
-          <div style="width:56px;height:56px;border-radius:50%;background:#06c755;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 6px;">L</div>
-          <div style="font-size:12px;color:#333;">LINE</div>
-        </div>
-        <div onclick="window.open('https://wa.me/?text=${shareText}%20${encodedUrl}','_blank')" style="text-align:center;cursor:pointer;">
-          <div style="width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 6px;">💬</div>
-          <div style="font-size:12px;color:#333;">WhatsApp</div>
-        </div>
-      </div>
-
-      <button onclick="document.getElementById('share-modal-overlay').remove()" style="
-        font-family:'Mali',cursive;font-size:15px;font-weight:600;
-        width:100%;padding:12px;border-radius:14px;border:2px solid #eaddca;
-        background:#f5f0e8;color:#8b7355;cursor:pointer;">✕ ปิด</button>
-    </div>
-  `;
-
-  overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) overlay.remove();
-  });
-
-  document.body.appendChild(overlay);
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(pageUrl).then(function () {
+      showToast("📋 คัดลอกลิงก์แล้ว! เอาไปแปะในไลน์หรือโซเชียลได้เลยจ้า 💜");
+    });
+  }
 }
 
 // function copyShareLink(url) {
