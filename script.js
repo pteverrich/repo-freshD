@@ -48,11 +48,11 @@ function clearCard() {
 }
 
 const RESULT_IMAGES = {
-  "นักบุญทุนน้อย": "/images_007/showResult1.png",
-  "นินจาสายห่วงสวย": "/images_007/showResult2.png",
-  "เสือหิวสายตลบตะแลง": "/images_007/showResult3.png",
-  "สายเปย์ขี้ใจอ่อน": "/images_007/showResult4.png",
-  "หัวโจกสายปั่น": "/images_007/showResult5.png",
+  "นักบุญทุนน้อย": "/image_007/showResult1.png",
+  "นินจาสายห่วงสวย": "/image_007/showResult2.png",
+  "เสือหิวสายตลบตะแลง": "/image_007/showResult3.png",
+  "สายเปย์ขี้ใจอ่อน": "/image_007/showResult4.png",
+  "หัวโจกสายปั่น": "/image_007/showResult5.png",
 };
 
 let currentResultBadge = "";
