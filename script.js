@@ -221,8 +221,8 @@ function createResultButtons() {
   });
 
   createStartButton(
-    "📤 แชร์รูป + ลิงก์ ให้เพื่อนเล่น!",
-    shareResult,  // ← เปลี่ยนแค่นี้
+    "📤 แชร์ให้เพื่อนๆ จ้าาา",
+    shareResult,
     "font-size:18px; padding:10px 30px; background:#e8def8; border-color:#d0bcff; margin-top: 10px;",
   );
 
@@ -276,6 +276,92 @@ function createResultButtons() {
 //     "font-size:18px; padding:10px 30px; background:#f0ece1; border-color:#dcd6c5; color:#706253;",
 //   );
 // }
+
+
+function shareResult() {
+  const pageUrl = window.location.href;
+  const imgFile = RESULT_IMAGES[currentResultBadge] || "";
+  const shareText = encodeURIComponent(`ฉันได้รับตำแหน่ง "${currentResultBadge}" 🎉 มาลองสแกนกรรมกลิ่นเต่าบ้างเลย! 🐢👃`);
+  const encodedUrl = encodeURIComponent(pageUrl);
+
+  const old = document.getElementById("share-modal-overlay");
+  if (old) old.remove();
+
+  const overlay = document.createElement("div");
+  overlay.id = "share-modal-overlay";
+  overlay.style.cssText = `
+    position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;
+    display:flex;align-items:flex-end;justify-content:center;
+  `;
+
+  overlay.innerHTML = `
+    <div style="
+      background:#fdfbf7;border-radius:28px 28px 0 0;
+      padding:24px 20px 40px;width:100%;max-width:500px;
+      font-family:'Mali',cursive;
+    ">
+      <div style="text-align:center;font-size:19px;font-weight:700;color:#5c4033;margin-bottom:6px;">
+        📤 แชร์ให้เพื่อนมาเล่น!
+      </div>
+      <div style="text-align:center;font-size:14px;color:#9e8c7e;margin-bottom:20px;">
+        คุณได้รับตำแหน่ง <strong style="color:#5c4033;">${currentResultBadge}</strong>
+      </div>
+
+      ${imgFile ? `<div style="text-align:center;margin-bottom:18px;">
+        <img src="${imgFile}" style="width:100%;max-width:300px;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.1);">
+      </div>` : ""}
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <button onclick="window.open('https://social-plugins.line.me/lineit/share?url=${encodedUrl}&text=${shareText}','_blank')" style="
+          font-family:'Mali',cursive;font-size:16px;font-weight:700;
+          padding:14px 8px;border-radius:14px;border:2px solid #06c755;
+          background:#e8fdf0;color:#04a346;cursor:pointer;">💚 LINE</button>
+
+        <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}','_blank')" style="
+          font-family:'Mali',cursive;font-size:16px;font-weight:700;
+          padding:14px 8px;border-radius:14px;border:2px solid #1877f2;
+          background:#eaf1ff;color:#1877f2;cursor:pointer;">💙 Facebook</button>
+
+        <button onclick="window.open('https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}','_blank')" style="
+          font-family:'Mali',cursive;font-size:16px;font-weight:700;
+          padding:14px 8px;border-radius:14px;border:2px solid #111;
+          background:#f5f5f5;color:#111;cursor:pointer;">🐦 X / Twitter</button>
+
+        <button id="copy-btn" onclick="copyShareLink('${pageUrl}')" style="
+          font-family:'Mali',cursive;font-size:16px;font-weight:700;
+          padding:14px 8px;border-radius:14px;border:2px solid #cdb4db;
+          background:#f3eefe;color:#6a3fa0;cursor:pointer;">🔗 คัดลอกลิงก์</button>
+      </div>
+
+      <button onclick="document.getElementById('share-modal-overlay').remove()" style="
+        font-family:'Mali',cursive;font-size:15px;font-weight:600;
+        width:100%;padding:12px;border-radius:14px;border:2px solid #eaddca;
+        background:#f5f0e8;color:#8b7355;cursor:pointer;">✕ ปิด</button>
+    </div>
+  `;
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) overlay.remove();
+  });
+
+  document.body.appendChild(overlay);
+}
+
+function copyShareLink(url) {
+  navigator.clipboard.writeText(url).then(function () {
+    const btn = document.getElementById("copy-btn");
+    if (btn) {
+      btn.textContent = "✅ คัดลอกแล้ว!";
+      btn.style.background = "#d4fce8";
+      btn.style.borderColor = "#06c755";
+      btn.style.color = "#04a346";
+    }
+  });
+}
+
+
+
+
 
 /* ════════════════════════════════════════
     🚀 GAME ENGINE & SCENES
