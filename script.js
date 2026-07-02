@@ -47,6 +47,75 @@ function clearCard() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+const RESULT_IMAGES = {
+  "😇 นักบุญทุนน้อย": "showResult1.png",
+  "🥷 นินจาสายห่วงสวย": "showResult2.png",
+  "🐯 เสือหิวสายตลบตะแลง": "showResult3.png",
+  "💸 สายเปย์ขี้ใจอ่อน": "showResult4.png",
+  "😎 หัวโจกสายปั่น": "showResult5.png",
+};
+
+let currentResultBadge = "";
+
+function shareResult() {
+  const pageUrl = window.location.href;
+  const shareText = `ฉันได้รับตำแหน่ง "${currentResultBadge}" 🎉\nมาลองสแกนกรรมกลิ่นเต่าของคุณน้าบ้างเลย! 🐢👃\n${pageUrl}`;
+  const imgFile = RESULT_IMAGES[currentResultBadge] || "";
+
+  if (navigator.share && imgFile) {
+    fetch(imgFile)
+      .then(function (r) { return r.blob(); })
+      .then(function (blob) {
+        const file = new File([blob], imgFile, { type: blob.type });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          return navigator.share({ files: [file], text: shareText });
+        }
+        return navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: shareText, url: pageUrl });
+      })
+      .catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        fallbackCopy(pageUrl);
+      });
+    return;
+  }
+
+  if (navigator.share) {
+    navigator.share({ title: "สแกนกรรมกลิ่นเต่า", text: shareText, url: pageUrl }).catch(function () { });
+    return;
+  }
+
+  fallbackCopy(pageUrl);
+}
+
+function fallbackCopy(url) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function () {
+      showToast("📋 คัดลอกลิงก์แล้ว! เอาไปแปะในไลน์หรือโซเชียลได้เลยจ้า 💜");
+    }).catch(function () { prompt("คัดลอกลิงก์นี้:", url); });
+  } else {
+    prompt("คัดลอกลิงก์นี้:", url);
+  }
+}
+
+function showToast(msg) {
+  const old = document.getElementById("share-toast");
+  if (old) old.remove();
+  const toast = document.createElement("div");
+  toast.id = "share-toast";
+  toast.textContent = msg;
+  toast.style.cssText = `
+    position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+    background:#3c2f2f;color:#fff;font-family:'Mali',cursive;
+    font-size:14px;font-weight:600;line-height:1.5;
+    padding:12px 20px;border-radius:16px;text-align:center;
+    max-width:88vw;box-shadow:0 4px 20px rgba(0,0,0,.2);
+    z-index:9999;animation:fadeIn .25s ease;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(function () { if (toast.parentNode) toast.remove(); }, 3000);
+}
+
+
 function createStartButton(label, onClick, customStyle) {
   const area = document.getElementById("action-area");
   const btn = document.createElement("button");
@@ -152,19 +221,8 @@ function createResultButtons() {
   });
 
   createStartButton(
-    "📤 แชร์ผลลัพธ์",
-    function () {
-      if (navigator.share) {
-        navigator.share({
-          title: "สแกนกรรมกลิ่นเต่า",
-          text: "มาลองเช็คกันเถอะ!",
-          url: window.location.href,
-        });
-      } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert("คัดลอกลิงก์เรียบร้อยแล้วจ้า!");
-      }
-    },
+    "📤 แชร์รูป + ลิงก์ ให้เพื่อนเล่น!",
+    shareResult,  // ← เปลี่ยนแค่นี้
     "font-size:18px; padding:10px 30px; background:#e8def8; border-color:#d0bcff; margin-top: 10px;",
   );
 
@@ -176,6 +234,48 @@ function createResultButtons() {
     "font-size:18px; padding:10px 30px; background:#f0ece1; border-color:#dcd6c5; color:#706253;",
   );
 }
+
+// function createResultButtons() {
+//   const targetArea = document.getElementById("action-area");
+//   targetArea.innerHTML = "";
+
+//   LINKS.forEach(function (item) {
+//     const btn = document.createElement("button");
+//     btn.className = "btn-choice";
+//     btn.textContent = item.label;
+//     btn.style.background = "#fffbfa";
+//     btn.style.borderColor = "#f3d5cd";
+//     btn.addEventListener("click", function () {
+//       window.open(item.url, "_blank");
+//     });
+//     targetArea.appendChild(btn);
+//   });
+
+//   createStartButton(
+//     "📤 แชร์ผลลัพธ์",
+//     function () {
+//       if (navigator.share) {
+//         navigator.share({
+//           title: "สแกนกรรมกลิ่นเต่า",
+//           text: "มาลองเช็คกันเถอะ!",
+//           url: window.location.href,
+//         });
+//       } else {
+//         navigator.clipboard.writeText(window.location.href);
+//         alert("คัดลอกลิงก์เรียบร้อยแล้วจ้า!");
+//       }
+//     },
+//     "font-size:18px; padding:10px 30px; background:#e8def8; border-color:#d0bcff; margin-top: 10px;",
+//   );
+
+//   createStartButton(
+//     "🔄 กลับหน้าแรก",
+//     function () {
+//       location.reload();
+//     },
+//     "font-size:18px; padding:10px 30px; background:#f0ece1; border-color:#dcd6c5; color:#706253;",
+//   );
+// }
 
 /* ════════════════════════════════════════
     🚀 GAME ENGINE & SCENES
@@ -631,6 +731,7 @@ function showPageFreshDChoice() {
 
 function showResult(badge, text1, text2, vidSrc) {
   clearCard();
+  currentResultBadge = badge;
   document.getElementById("main-title").textContent = `${badge}`;
   document.getElementById("badge-title").textContent = "";
 
