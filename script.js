@@ -266,7 +266,7 @@ function shareResult() {
     fetch(imgFile)
       .then(function (r) { return r.blob(); })
       .then(function (blob) {
-        const file = new File([blob], imgFile, { type: blob.type });
+        const file = new File([blob], imgFile.split("/").pop(), { type: blob.type });
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           return navigator.share({ files: [file], text: shareText });
         }
